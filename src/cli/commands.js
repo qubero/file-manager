@@ -1,4 +1,4 @@
-import { listFiles, changeDirectory, getOSinfo } from '../commands/index.js';
+import { listFiles, changeDirectory, getOSinfo, calcHash } from '../commands/index.js';
 
 const commands = new Map(Object.entries({
   ls: {
@@ -20,6 +20,11 @@ const commands = new Map(Object.entries({
     usage: 'os --[param]',
     descr: 'Operating system info',
     action: getOSinfo,
+  },
+  hash: {
+    usage: 'hash path_to_file',
+    descr: 'Calculate hash for file',
+    action: calcHash,
   },
   '.exit': {
     usage: '.exit',
