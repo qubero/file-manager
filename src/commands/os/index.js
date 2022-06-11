@@ -1,16 +1,26 @@
 import { cpus, EOL, userInfo } from 'os';
 import { FMerror } from '../../logger/logger.js';
 
-const getCpusInfo = () => (
-  cpus().map(({ model, speed }) => ({
-    model,
-    speed: `${(speed / 1000).toFixed(2)}GHz`,
-  }))
-);
+const getCpusInfo = () => {
+  const cpusInfo = cpus().reduce((acc, { model, speed }, index) => {
+    acc[index + 1] = {
+      model: model.split(' @')[0],
+      speed: `${(speed / 1000).toFixed(2)}GHz`,
+    };
+    return acc;
+  }, {});
+  const overall = `Overall amount of CPUs: ${cpusInfo.length}`;
+
+  return { overall, cpusInfo };
+};
 
 const osInfo = {
   '--EOL': () => console.log(JSON.stringify(EOL)),
-  '--cpus': () => console.table(getCpusInfo()),
+  '--cpus': () => {
+    const { overall, cpusInfo } = getCpusInfo();
+    console.log(overall);
+    console.table(cpusInfo);
+  },
   '--homedir': () => console.log(userInfo().homedir),
   '--username': () => console.log(userInfo().username),
   '--architecture': () => console.log(process.arch),
