@@ -3,9 +3,11 @@ import { FMerror } from '../../logger/logger.js';
 
 const getCpusInfo = () => {
   const cpusInfo = cpus().reduce((acc, { model, speed }, index) => {
+    const del = (speed < 1000 && speed > 100) ? 10 : 1000;
+
     acc[index + 1] = {
       model: model.split(' @')[0],
-      speed: `${(speed / 1000).toFixed(2)}GHz`,
+      speed: `${(speed / del).toFixed(2)}GHz`,
     };
     return acc;
   }, {});
