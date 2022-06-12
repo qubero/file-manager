@@ -11,7 +11,7 @@ const getCpusInfo = () => {
     };
     return acc;
   }, {});
-  const overall = `Overall amount of CPUs: ${cpusInfo.length}`;
+  const overall = `Overall amount of CPUs: ${cpus().length}`;
 
   return { overall, cpusInfo };
 };
