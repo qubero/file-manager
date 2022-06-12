@@ -1,9 +1,9 @@
 
+import { resolve } from 'path';
 import { createHash } from 'crypto';
 import { createReadStream } from 'fs';
-import { resolve } from 'path';
+import { createCustomWriteStream } from '../../utils/index.js';
 import { pipeline } from 'stream/promises';
-import { Writable } from 'stream';
 import { FMerror } from '../../logger/logger.js';
 
 const HASH_PARAMS_COUNT = 1;
@@ -27,13 +27,3 @@ const calcHash = async (params) => {
 }
 
 export { calcHash };
-
-const createCustomWriteStream = () => {
-  return new Writable({
-    decodeStrings: false,
-    write(chunk, _, callback) {
-      console.log(chunk)
-      callback()
-    },
-  })
-}
