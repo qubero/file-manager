@@ -1,4 +1,4 @@
-import { listFiles, changeDirectory, getOSinfo, calcHash, addFile, catFile, copyFile, moveFile, deleteFile, renameFile } from '../commands/index.js';
+import { listFiles, changeDirectory, getOSinfo, calcHash, addFile, catFile, copyFile, moveFile, deleteFile, renameFile, compress, decompress } from '../commands/index.js';
 
 const commands = new Map(Object.entries({
   ls: {
@@ -58,6 +58,17 @@ const commands = new Map(Object.entries({
     usage: 'hash path_to_file',
     descr: 'Calculate hash for file',
     action: calcHash,
+  },
+
+  compress: {
+    usage: 'compress path_to_file path_to_destination',
+    descr: 'Compress operation',
+    action: compress,
+  },
+  decompress: {
+    usage: 'decompress path_to_file path_to_destination',
+    descr: 'Decompress operation',
+    action: decompress,
   },
 
   '.exit': {
