@@ -10,7 +10,6 @@ const listFiles = async (params) => {
     const contents = await readdir(cwdPath);
     console.log(contents);
   } catch (err) {
-    console.log(err)
     throw FMerror.fail;
   }
 };

@@ -28,7 +28,6 @@ const compress = async (params) => {
       fhd.createWriteStream()
     );
   } catch (err) {
-    console.log(err)
     throw FMerror.fail;
   } finally {
     await fhs?.close();
