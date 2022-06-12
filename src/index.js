@@ -3,6 +3,8 @@ import { createInterface} from 'readline';
 import { handleInput } from './cli/handleInput.js';
 import { FMmessage } from './logger/logger.js';
 
+const ANONYMOUS = 'ANONYMOUS';
+
 const storage = {
   name: '',
   cwd: '',
@@ -28,9 +30,13 @@ const initFileManager = () => {
   process.chdir(homedir());
 
   const userNameArg = process.argv.slice(2)[0];
-  const [, name] = userNameArg.split('=');
 
-  storage.name = name;
+  if (!userNameArg || !userNameArg.length) {
+    storage.name = ANONYMOUS;
+  } else {
+    const [, name] = userNameArg.split('=');
+    storage.name = name || ANONYMOUS;
+  }
   storage.initCwd = process.cwd();
 
   initFileManager();
