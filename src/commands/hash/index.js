@@ -1,4 +1,3 @@
-
 import { resolve } from 'path';
 import { createHash } from 'crypto';
 import { createReadStream } from 'fs';
