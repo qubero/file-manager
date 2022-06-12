@@ -1,4 +1,4 @@
-import { listFiles, changeDirectory, getOSinfo, calcHash, addFile, catFile, copyFile, moveFile, deleteFile, renameFile, compress, decompress } from '../commands/index.js';
+import { listFiles, changeDirectory, getOSinfo, calcHash, addFile, catFile, copyFile, moveFile, deleteFile, renameFile, compress, decompress, moveUp } from '../commands/index.js';
 
 const commands = new Map(Object.entries({
   ls: {
@@ -9,7 +9,7 @@ const commands = new Map(Object.entries({
   up: {
     usage: 'up',
     descr: 'Go upper from current directory',
-    action: changeDirectory.bind(undefined, ['..']),
+    action: moveUp,
   },
   cd: {
     usage: 'cd path_to_directory',
